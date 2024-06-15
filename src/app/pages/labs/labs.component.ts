@@ -25,4 +25,12 @@ export class LabsComponent {
     age: 2,
     avatar: 'https://cataas.com/cat?815'
   }
+
+  clickHandler() {
+    alert('bop!')
+  }
+
+  changeHandler(event: Event){
+    console.log(event);
+  }
 }
