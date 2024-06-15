@@ -16,8 +16,14 @@
   <button [disabled]="disabled">Click me</button>
   <p>cat: {{cat.name}}</p>
   <hr />
+  <p>(click)</p>
   <button (click)="clickHandler()">bip bop</button>
+  <p>(double click)</p>
   <button (dblclick)="clickHandler()">double me</button>
   <p>(change)</p>
   <input type="number" [value]="cat.age" (change)="changeHandler($event)" />
+  <p>(keydown)</p>
+  <input type="text" [value]="cat.name" (keydown)="keydownHandler($event)" />
+  <p>(keydown shift)</p>
+  <input type="text" [value]="cat.name" (keydown.shift.t)="clickHandler()" />
 </div>
