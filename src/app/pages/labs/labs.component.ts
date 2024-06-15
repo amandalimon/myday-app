@@ -18,4 +18,11 @@ export class LabsComponent {
   ]
   name = 'Amanda';
   age = 25;
+  disabled = "true";
+  img = 'https://cataas.com/cat?815';
+  cat = {
+    name: 'Tomasa',
+    age: 2,
+    avatar: 'https://cataas.com/cat?815'
+  }
 }
