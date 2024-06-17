@@ -14,18 +14,18 @@
   <img [src]="img" alt="" />
   <input type="text" [value]="name()" />
   <button [disabled]="disabled">Click me</button>
-  <p>cat: {{cat.name}}</p>
+  <p>cat: {{cat().name}}</p>
   <hr />
   <p>(click)</p>
   <button (click)="clickHandler()">bip bop</button>
   <p>(double click)</p>
   <button (dblclick)="clickHandler()">double me</button>
   <p>(change)</p>
-  <input type="number" [value]="cat.age" (change)="changeHandler($event)" />
+  <input type="number" [value]="cat().age" (change)="changeHandler($event)" />
   <p>(keydown)</p>
-  <input type="text" [value]="cat.name" (keydown)="keydownHandler($event)" />
+  <input type="text" [value]="cat().name" (keydown)="keydownHandler($event)" />
   <p>(keydown shift)</p>
-  <input type="text" [value]="cat.name" (keydown.shift.t)="clickHandler()" />
+  <input type="text" [value]="cat().name" (keydown.shift.t)="clickHandler()" />
   <h1>Signals</h1>
   <input type="text" [value]="name()" (change)="changeHandler($event)" />
   <p>{{name()}}</p>
@@ -37,4 +37,15 @@
       {{i}} {{task}}
     </li>
   </ul>
+  <hr />
+  <input type="number" [value]="cat().age" (change)="changeAge($event)"/>
+  <div *ngIf="name() ==='Amanda'">
+    Soy Amanda
+  </div>
+  <div *ngIf="cat().name ==='Tomasa' && cat().age > 18; else elseBlock">
+    Soy Tomasa y soy mayor de 18.
+  </div>
+  <ng-template #elseBlock>
+    Soy Tomasa y soy menor de 18.
+  </ng-template>
 </div>

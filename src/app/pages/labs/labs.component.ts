@@ -20,11 +20,12 @@ export class LabsComponent {
   age = 25;
   disabled = "true";
   img = 'https://cataas.com/cat?815';
-  cat = {
+
+  cat = signal({
     name: 'Tomasa',
-    age: 2,
+    age: 19,
     avatar: 'https://cataas.com/cat?815'
-  }
+  })
 
   clickHandler() {
     alert('bop!')
@@ -39,5 +40,16 @@ export class LabsComponent {
   keydownHandler(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
     console.log(input.value)
+  }
+
+  changeAge(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newAge = input.value
+    this.cat.update(prevState => {
+      return {
+        ...prevState,
+        age: parseInt(newAge, 10)
+      }
+    })
   }
 }
