@@ -48,4 +48,13 @@
   <ng-template #elseBlock>
     Soy Tomasa y soy menor de 18.
   </ng-template>
+  <hr />
+  <p>Escribe el nombre de tu michi</p>
+  <input type="text" [value]="cat().name" (change)="changeName($event)"/>
+  <div [ngSwitch]="cat().name">
+    <p *ngSwitchCase="'Avellano'">Hola soy Avellano</p>
+    <p *ngSwitchCase="'Egg'">Hola soy Draco</p>
+    <p *ngSwitchCase="'Michi'">Hola soy Anubis</p>
+    <p *ngSwitchDefault>No conozco ese michi!</p>
+  </div>
 </div>

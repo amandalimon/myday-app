@@ -22,7 +22,7 @@ export class LabsComponent {
   img = 'https://cataas.com/cat?815';
 
   cat = signal({
-    name: 'Tomasa',
+    name: 'Agatha',
     age: 19,
     avatar: 'https://cataas.com/cat?815'
   })
@@ -49,6 +49,17 @@ export class LabsComponent {
       return {
         ...prevState,
         age: parseInt(newAge, 10)
+      }
+    })
+  }
+
+  changeName(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newName = input.value
+    this.cat.update(prevState => {
+      return {
+        ...prevState,
+        name: newName
       }
     })
   }
