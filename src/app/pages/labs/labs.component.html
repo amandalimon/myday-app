@@ -2,7 +2,7 @@
   <h1>mi primer proyecto c:</h1>
   <h2>{{welcome}}</h2>
   <ul>
-    <li *ngFor="let task of tasks">
+    <li *ngFor="let task of tasks()">
       {{task}}
     </li>
   </ul>
@@ -31,5 +31,10 @@
   <p>{{name()}}</p>
   <p>{{name()}}</p>
   <p>{{name()}}</p>
-
+  <ul>
+    <p>total: {{tasks().length}}</p>
+    <li *ngFor="let task of tasks(); index as i">
+      {{i}} {{task}}
+    </li>
+  </ul>
 </div>
