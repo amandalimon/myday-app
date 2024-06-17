@@ -38,7 +38,7 @@
     </li>
   </ul>
   <hr />
-  <input type="number" [value]="cat().age" (change)="changeAge($event)"/>
+  <input type="number" [value]="cat().age" (change)="changeAge($event)" />
   <div *ngIf="name() ==='Amanda'">
     Soy Amanda
   </div>
@@ -50,11 +50,16 @@
   </ng-template>
   <hr />
   <p>Escribe el nombre de tu michi</p>
-  <input type="text" [value]="cat().name" (change)="changeName($event)"/>
+  <input type="text" [value]="cat().name" (change)="changeName($event)" />
   <div [ngSwitch]="cat().name">
     <p *ngSwitchCase="'Avellano'">Hola soy Avellano</p>
     <p *ngSwitchCase="'Egg'">Hola soy Draco</p>
     <p *ngSwitchCase="'Michi'">Hola soy Anubis</p>
     <p *ngSwitchDefault>No conozco ese michi!</p>
   </div>
+
+  <hr />
+  <input type="color" [formControl]="colorCtrl" />
+  <p>color: {{ colorCtrl.value }}</p>
+
 </div>
