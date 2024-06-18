@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Task } from '../../models/task.model';
+import { Task, FilterBy } from '../../models/task.model';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +10,7 @@ import { Task } from '../../models/task.model';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
+
 export class HomeComponent {
   tasks = signal<Task[]>([
     {
@@ -30,6 +31,24 @@ export class HomeComponent {
       Validators.required,
       Validators.minLength(3),
     ]
+  });
+
+  filter = signal<FilterBy>('all');
+
+  changeFilter(filter: FilterBy) {
+    this.filter.set(filter)
+  }
+
+  tasksByFilter = computed(() => {
+    const filter = this.filter();
+    const tasks = this.tasks();
+    if (filter === 'pending') {
+      return tasks.filter(task => !task.completed);
+    }
+    if (filter === 'completed') {
+      return tasks.filter(task => task.completed);
+    }
+    return tasks;
   })
 
   changeHandler() {
@@ -69,7 +88,7 @@ export class HomeComponent {
     })
   }
 
-  updateTaskwithEditingMode(index: number) {
+  updateTaskWithEditingMode(index: number) {
     this.tasks.update((tasks) => {
       return tasks.map((task, position) => {
         if (position === index) {

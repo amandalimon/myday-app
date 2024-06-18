@@ -4,3 +4,5 @@ export interface Task {
   completed: boolean;
   editing?: boolean;
 }
+
+export type FilterBy = 'all' | 'pending' | 'completed';
