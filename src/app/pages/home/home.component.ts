@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Task, FilterBy } from '../../models/task.model';
 
@@ -32,6 +32,22 @@ export class HomeComponent {
       Validators.minLength(3),
     ]
   });
+
+  constructor() {
+    effect(() => {
+      const tasks = this.tasks();
+      console.log(tasks)
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    });
+  }
+
+  ngOnInit() {
+    const storage = localStorage.getItem('tasks');
+    if (storage) {
+      const tasks = JSON.parse(storage);
+      this.tasks.set(tasks);
+    }
+  }
 
   filter = signal<FilterBy>('all');
 
