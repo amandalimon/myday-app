@@ -26,19 +26,32 @@
   <input type="text" [value]="cat().name" (keydown)="keydownHandler($event)" />
   <p>(keydown shift)</p>
   <input type="text" [value]="cat().name" (keydown.shift.t)="clickHandler()" />
+
   <h1>Signals</h1>
   <input type="text" [value]="name()" (change)="changeHandler($event)" />
   <p>{{name()}}</p>
   <p>{{name()}}</p>
   <p>{{name()}}</p>
+
+  <input type="number" [value]="cat().age" (change)="changeAge($event)" />
+
+  <h2>for: previous syntax</h2>
   <ul>
     <p>total: {{tasks().length}}</p>
     <li *ngFor="let task of tasks(); index as i">
       {{i}} {{task}}
     </li>
   </ul>
+
+  <h2>for: new syntax</h2>
+  <ul>
+    @for(task of tasks(); track task; let i = $index){
+    <li>{{i}}{{task}}</li>
+    } @empty {
+    <li><strong>No hay ningún elemento en la lista!</strong></li>
+    }
+  </ul>
   <hr />
-  <input type="number" [value]="cat().age" (change)="changeAge($event)" />
 
   <h2>if-else previous syntax</h2>
   <!-- if  -->
@@ -70,6 +83,7 @@
   }
   <hr />
 
+  <h2>switch: previous syntax</h2>
   <p>Escribe el nombre de tu michi</p>
   <input type="text" [value]="cat().name" (change)="changeName($event)" />
   <div [ngSwitch]="cat().name">
@@ -78,6 +92,22 @@
     <p *ngSwitchCase="'Michi'">Hola soy Anubis</p>
     <p *ngSwitchDefault>No conozco ese michi!</p>
   </div>
+
+  <h2>switch: new syntax</h2>
+  @switch (cat().name) {
+    @case('Avellano') {
+     <p>Hola soy Avellano</p>
+    }
+    @case('Egg') {
+     <p>Hola soy Draco</p>
+    }
+    @case('Michi') {
+      <p>Hola soy Anubis</p>
+    }
+    @default {
+      <p>Michi no identificado</p>
+    }
+  }
 
   <hr />
   <input type="color" [formControl]="colorCtrl" />
