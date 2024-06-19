@@ -141,4 +141,8 @@ export class HomeComponent {
       })
     })
   }
+
+  clearCompleted() {
+    this.tasks.update((task) => task.filter((task) => !task.completed))
+  }
 }
