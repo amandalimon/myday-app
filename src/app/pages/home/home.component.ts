@@ -15,12 +15,17 @@ export class HomeComponent {
   tasks = signal<Task[]>([
     {
       id: Date.now(),
-      title: 'Crear componentes',
+      title: 'Salir a caminar',
       completed: false,
     },
     {
       id: Date.now(),
-      title: 'Crear servicio',
+      title: 'Comprar lista de compras',
+      completed: false,
+    },
+    {
+      id: Date.now(),
+      title: 'Estudiar Angular JS',
       completed: false,
     },
   ]);
