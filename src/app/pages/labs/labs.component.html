@@ -39,16 +39,37 @@
   </ul>
   <hr />
   <input type="number" [value]="cat().age" (change)="changeAge($event)" />
+
+  <h2>if-else previous syntax</h2>
+  <!-- if  -->
   <div *ngIf="name() ==='Amanda'">
     Soy Amanda
   </div>
+  <!-- if else  -->
   <div *ngIf="cat().name ==='Tomasa' && cat().age > 18; else elseBlock">
     Soy Tomasa y soy mayor de 18.
   </div>
   <ng-template #elseBlock>
     Soy Tomasa y soy menor de 18.
   </ng-template>
+
+  <h2>if-else new syntax</h2>
+  <!-- if  -->
+  @if (name() ==='Amanda') {
+  <div>Soy Amanda</div>
+  }
+  <!-- if else  -->
+  @if (cat().name ==='Draco' && cat().age > 18) {
+  <div>
+    Soy Draco y soy mayor de 18.
+  </div>
+  } @else {
+  <div>
+    Soy Draco y soy menor de 18.
+  </div>
+  }
   <hr />
+
   <p>Escribe el nombre de tu michi</p>
   <input type="text" [value]="cat().name" (change)="changeName($event)" />
   <div [ngSwitch]="cat().name">
@@ -57,8 +78,8 @@
     <p *ngSwitchCase="'Michi'">Hola soy Anubis</p>
     <p *ngSwitchDefault>No conozco ese michi!</p>
   </div>
-  <hr />
 
+  <hr />
   <input type="color" [formControl]="colorCtrl" />
   <p>color: {{ colorCtrl.value }}</p>
   <svg>
